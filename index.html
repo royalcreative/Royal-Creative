@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROYAL CREATIVE</title>
+  <!-- Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    :root {
+      --primary-color: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary-color: #f1f5f9;
+      --accent-color: #10b981;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --white: #ffffff;
+      --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --border-radius: 12px;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+      color: var(--text-primary);
+      overflow-x: hidden; /* prevent horizontal scrolling on small screens */
+    }
+
+    a {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      gap: 60px;
+      width: 100%;
+      padding: 32px 9%; /* increased for a larger navbar */
+      min-height: 84px;
+      background: var(--white);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      visibility: hidden;
+      opacity: 0;
+      animation: show-content 1.5s linear forwards;
+      animation-delay: 1.2s;
+    }
+    @keyframes show-content {
+      100% {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .navbar .logo {
+      font-size: 36px; /* larger logo */
+      font-weight: 700;
+      background: var(--gradient-bg);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .navbar ul {
+      display: flex;
+    }
+
+    .navbar ul li {
+      list-style: none;
+      margin-left: 44px; /* more spacing between links */
+    }
+
+    .navbar ul li a {
+      font-size: 22px; /* larger link text */
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: 0.3s ease;
+    }
+
+    .navbar ul li:hover a {
+      color: var(--accent-color);
+    }
+
+    /* Home Section */
+    .home {
+      min-height: 100vh;
+      padding: 140px 9% 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-info {
+      flex: 1 1 500px;
+      text-align: left;
+      z-index: 2;
+    }
+
+    .home-info h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    .home-info h2 {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 600;
+      margin-top: -10px;
+      color: var(--text-primary);
+    }
+
+    .home-info h2 span {
+      position: relative;
+      display: inline-block;
+      color: transparent;
+      -webkit-text-stroke: 0.7px var(--accent-color);
+      animation: display-text 16s linear infinite;
+      animation-delay: calc(-4s * var(--i));
+    }
+
+    @keyframes display-text {
+      25%,
+      100% {
+        display: none;
+      }
+    }
+
+    .home-info h2 span::before {
+      content: attr(data-text);
+      position: absolute;
+      width: 0;
+      border-right: 2px solid var(--accent-color);
+      color: var(--accent-color);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: fill-text 4s linear infinite;
+    }
+
+    @keyframes fill-text {
+      10%,
+      100% {
+        width: 0;
+      }
+
+      70%,
+      90% {
+        width: 100%;
+      }
+    }
+
+    .home-info p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 10px 0 25px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Button */
+    .btn-sci { /* center container */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-sci .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--gradient-bg);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      transition: 0.3s ease;
+      margin-bottom: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-sci .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Social Icons */
+    .sci {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .sci a {
+      margin: 0; /* remove uneven right margin to keep centering precise */
+      font-size: 24px;
+      color: var(--text-secondary);
+      transition: 0.3s;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .sci a:hover {
+      color: var(--accent-color);
+    }
+
+    .contact-info {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .contact-info p {
+      margin: 4px 0;
+      font-size: 13px;
+      word-break: break-word;
+    }
+
+    /* Home Image */
+    .home-img {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .home-img .img-box {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: conic-gradient(var(--accent-color), transparent 40%, transparent 70%, var(--accent-color));
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .home-img .img-box::before,
+    .home-img .img-box::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: conic-gradient(transparent, transparent, transparent, var(--accent-color));
+      transform: rotate(0deg);
+      animation: rotate-border 10s linear infinite;
+    }
+
+    .home-img .img-box::after {
+      animation-delay: -5s;
+    }
+
+    @keyframes rotate-border {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .home-img .img-item {
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      border-radius: 50%;
+      border: 0.1px solid var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .home-img .img-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .img-fallback {
+      width: 100%;
+      height: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--accent-color);
+      font-weight:700;
+      font-size:22px;
+      background:linear-gradient(135deg, rgba(16,185,129,0.06), rgba(99,102,241,0.02));
+      border-radius:50%;
+    }
+
+    /* Bar Animation Background */
+    .bar-animation {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .bar-animation .bar {
+      flex: 1;
+      background: var(--secondary-color);
+      border: 2px solid var(--primary-color);
+      transform: translateY(-100%);
+      animation: show-bars 0.5s ease-in-out forwards;
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+    @keyframes show-bars {
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
+    /* Tablet View */
+    @media (max-width: 1024px) {
+      .home {
+        flex-direction: column;
+        padding: 100px 5% 40px;
+        gap: 40px;
+      }
+
+      .home-img {
+        order: 2;
+        margin-top: -20px; /* Fix: move image up */
+      }
+
+      .home-info {
+        order: 1;
+        text-align: center;
+      }
+
+      .home-info h1 {
+        font-size: 36px;
+      }
+
+      .home-info h2 {
+        font-size: 28px;
+      }
+
+      .home-info p {
+        font-size: 16px;
+      }
+    }
+
+    /* Mobile View */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 16px 5%; /* slightly larger touch area on mobile */
+      }
+
+      .navbar .logo {
+        font-size: 20px; /* slightly larger logo on mobile */
+      }
+
+      .nav-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        font-size: 26px;
+        color: var(--text-primary);
+      }
+
+      .navbar .nav-toggle {
+        display: block;
+      }
+
+      .navbar ul {
+        position: fixed;
+        top: 64px;
+        left: 5%;
+        right: 5%;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow-md);
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: auto;
+        max-width: 320px;
+        box-sizing: border-box;
+        transform: translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.22s ease;
+        z-index: 200;
+      }
+
+      .navbar.open ul {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .navbar ul li {
+        margin-left: 0;
+      }
+
+      .navbar ul li a {
+        font-size: 16px; /* slightly smaller on mobile */
+        color: var(--text-primary);
+        padding: 8px 10px; /* smaller tap area padding */
+        display: block;
+        word-break: break-word;
+      }
+
+      .home {
+        flex-direction: column;
+        padding: 60px 5% 20px; /* reduced top padding */
+        gap: 8px; /* tighter vertical spacing */
+        min-height: auto; /* do not force full viewport height on mobile */
+      }
+
+      .home-img {
+        order: -1; /* move image above text on mobile */
+        width: 100%;
+        justify-content: center;
+        margin: 0 0 2px; /* much tighter spacing between image and text */
+        display: flex;
+        padding-top: 4px;
+      }
+
+      .home-img .img-box {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+
+      .home-img .img-item img {
+        width: 92%;
+        height: auto;
+      }
+
+      .home-info {
+        order: 1;
+        text-align: center;
+        padding: 0 8px;
+      }
+
+      .home-info h1 {
+        margin-bottom: 4px; /* tighten heading space */
+      }
+
+      .home-info h1 {
+        font-size: 28px;
+      }
+
+      .home-info h2 {
+        font-size: 20px;
+      }
+
+      .home-info p {
+        font-size: 14px;
+      }
+
+      .btn-sci .btn {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .sci {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      .sci a {
+        font-size: 20px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sci a p {
+        display: block; /* show email on mobile but wrap and keep small */
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-top: 6px;
+        max-width: 160px;
+        text-align: center;
+        word-break: break-all;
+      }
+
+      .bar-animation {
+        display: none;
+      }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 400px) {
+      .navbar .logo {
+        font-size: 16px; /* slightly smaller for very narrow screens */
+      }
+
+      .navbar ul li a {
+        font-size: 15px;
+        padding: 8px 10px;
+      }
+
+      .home-info h1 {
+        font-size: 24px;
+      }
+
+      .home-img .img-box {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    /* Desktop: prevent mobile 'open' state from affecting layout */
+    @media (min-width: 769px) {
+      .navbar.open ul {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        width: auto;
+        max-width: none;
+      }
+
+      .nav-toggle {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="logo">ROYAL CREATIVE.</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><i class='bx bx-menu'></i></button>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="get-started.html">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- Background Bars -->
+  <div class="bar-animation">
+    <div class="bar" style="--i:6;"></div>
+    <div class="bar" style="--i:5;"></div>
+    <div class="bar" style="--i:4;"></div>
+    <div class="bar" style="--i:3;"></div>
+    <div class="bar" style="--i:2;"></div>
+    <div class="bar" style="--i:1;"></div>
+  </div>
+
+  <!-- Home Section -->
+  <section class="home">
+    <div class="home-img">
+      <div class="img-box">
+        <div class="img-item">
+<img src="royalimg.jpg" alt="ROYAL CREATIVE" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="home-info">
+      <h1>WELCOME TO ROYAL CREATIVE</h1>
+      <h2>We Help You
+  <span style="--i:4" data-text="REPAIR">REPAIR</span>
+  <span style="--i:3" data-text="FiX">FiX</span>
+  <span style="--i:2" data-text="RECOVER">RECOVER</span>
+  <span style="--i:1" data-text="UPGRADE">UPGRADE</span>
+</h2>
+
+      <p>
+ROYAL CREATIVE is a trusted computer repair and IT service provider based in Hamdan Street, Abu Dhabi. We specialize in laptop and desktop repair, upgrades, and troubleshooting, delivering fast, reliable, and affordable solutions. Our experienced technicians focus on quality service, transparency, and customer satisfaction.      <div class="btn-sci">
+        <a href="get-started.html" class="btn">CONNECT</a>
+        <div class="sci">
+         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info.royalcreative@gmail.com" target="_blank" rel="noopener noreferrer">
+            <i class='bx bxl-gmail'></i>
+          </a>
+          <a href="+971 552513206" target="_blank" rel="noopener noreferrer">
+            <i class='bx  bxl-whatsapp'></i> 
+          </a>
+          <a href="0097126773199" target="_blank" rel="noopener noreferrer">
+            <i class='bx  bx-phone'></i> 
+          </a>
+          <a href="https://goo.gl/maps/XYZ" target="_blank" rel="noopener noreferrer">
+            <i class='bx  bxs-map'></i>
+          </a>
+        </div>
+        <div class="contact-info">
+          <p>info.royalcreative@gmail.com</p>
+          <p>Ph: 0097126773199</p>
+          <p>Location: UAE, Abu Dhabi, Hamdan Street</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.querySelector('.navbar');
+      const toggle = document.querySelector('.nav-toggle');
+      const links = nav.querySelectorAll('ul li a');
+
+      const closeMobileIfDesktop = () => {
+        if (window.innerWidth > 768 && nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        }
+      };
+
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+          this.setAttribute('aria-expanded', String(!expanded));
+          nav.classList.toggle('open');
+        });
+      }
+
+      links.forEach(l => l.addEventListener('click', () => {
+        nav.classList.remove('open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }));
+
+      window.addEventListener('resize', closeMobileIfDesktop);
+      window.addEventListener('orientationchange', closeMobileIfDesktop);
+
+      // ensure correct state on load
+      closeMobileIfDesktop();
+    });
+  </script>
+</body>
+</html>
