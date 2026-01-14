@@ -1,0 +1,4 @@
+{
+  "deprecated": true,
+  "note": "Manifest is now inlined in index.html. You can delete this file if you like."
+}
