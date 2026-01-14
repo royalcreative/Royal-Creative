@@ -5,6 +5,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROYAL CREATIVE</title>
+  <!-- PWA & Icons (inlined manifest; icons point to royalimg.jpg) -->
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="royalimg.jpg" sizes="192x192">
+  <link rel="apple-touch-icon" href="royalimg.jpg" sizes="180x180">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Manifest is generated in-page to avoid needing a separate manifest.json file -->
+  <script>
+    (function() {
+      const manifest = {
+        name: "ROYAL CREATIVE",
+        short_name: "Royal",
+        start_url: ".",
+        scope: "/",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#ffffff",
+        icons: [
+          { src: "royalimg.jpg", sizes: "192x192", type: "image/jpeg", purpose: "any maskable" },
+          { src: "royalimg.jpg", sizes: "512x512", type: "image/jpeg", purpose: "any maskable" }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      let link = document.querySelector('link[rel="manifest"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'manifest';
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    })();
+  </script>
+  <!-- Icon generation instructions (for future): 
+       1) Use ImageMagick to create proper PNG icons from royalimg.jpg:
+          convert royalimg.jpg -resize 192x192^ -gravity center -extent 192x192 icons/icon-192.png
+          convert royalimg.jpg -resize 512x512^ -gravity center -extent 512x512 icons/icon-512.png
+          convert royalimg.jpg -resize 180x180^ -gravity center -extent 180x180 icons/apple-touch-icon.png
+       2) If you prefer not to create icons now, using royalimg.jpg works but creating square PNGs is recommended.
+  -->
   <!-- Boxicons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -638,7 +678,7 @@ ROYAL CREATIVE is a trusted computer repair and IT service provider based in Ham
         <div class="contact-info">
           <p>info.royalcreative@gmail.com</p>
           <p>Ph: 0097126773199</p>
-          <p>Location:  Hamdan Street, Abu Dhabi, UAE </p>
+          <p>Location: UAE, Abu Dhabi, Hamdan Street</p>
         </div>
       </div>
     </div>
@@ -678,5 +718,4 @@ ROYAL CREATIVE is a trusted computer repair and IT service provider based in Ham
     });
   </script>
 </body>
-
 </html>
